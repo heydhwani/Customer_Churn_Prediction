@@ -65,3 +65,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 print("\nTrain shape:", X_train.shape)
 print("Test shape:", X_test.shape)
+
+# TRAIN MODEL
+
+print("\nTraining model...")
+pipeline.fit(X_train, y_train)
+print("✓ Model training complete!")
