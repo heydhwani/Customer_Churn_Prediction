@@ -44,3 +44,15 @@ preprocessor = ColumnTransformer(
         ("num", StandardScaler(), numeric_cols)
     ]
 )
+
+# MODEL
+
+model = RandomForestClassifier(
+    n_estimators=200,
+    random_state=42
+)
+
+pipeline = Pipeline([
+    ("preprocessing", preprocessor),
+    ("model", model)
+])
