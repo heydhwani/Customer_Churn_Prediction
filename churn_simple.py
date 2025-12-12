@@ -71,3 +71,11 @@ print("Test shape:", X_test.shape)
 print("\nTraining model...")
 pipeline.fit(X_train, y_train)
 print("✓ Model training complete!")
+
+# EVALUATION
+
+y_pred = pipeline.predict(X_test)
+
+print("\nAccuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
