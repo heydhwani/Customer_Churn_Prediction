@@ -27,3 +27,11 @@ clean_path = Path("Data/clean_churn.csv")
 df.to_csv(clean_path, index=False)
 
 print("\n✓ Cleaned dataset saved at Data/clean_churn.csv")
+
+# SIMPLE EDA
+print("\nShape:", df.shape)
+print("\nMissing values:\n", df.isnull().sum())
+print("\nData types:\n", df.dtypes)
+
+print("\nChurn distribution:")
+print(df["churn"].value_counts())
