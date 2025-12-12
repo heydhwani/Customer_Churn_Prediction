@@ -35,3 +35,12 @@ numeric_cols = [
 
 print("\nCategorical Columns:", categorical_cols)
 print("Numeric Columns:", numeric_cols)
+
+# PREPROCESSING PIPELINE
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols),
+        ("num", StandardScaler(), numeric_cols)
+    ]
+)
