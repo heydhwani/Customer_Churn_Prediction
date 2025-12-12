@@ -35,3 +35,13 @@ print("\nData types:\n", df.dtypes)
 
 print("\nChurn distribution:")
 print(df["churn"].value_counts())
+
+# Correlation (Only NUMERIC)
+
+num_cols = df.select_dtypes(include=['int64', 'float64']).columns
+corr = df[num_cols].corr()
+
+plt.figure(figsize=(10, 6))
+sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
