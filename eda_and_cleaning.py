@@ -15,3 +15,6 @@ print(df.head())
 
 # Remove duplicate rows
 df = df.drop_duplicates()
+
+# Handle missing values
+df = df.fillna(method='ffill')
