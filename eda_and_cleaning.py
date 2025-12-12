@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # LOAD DATA
-
 data_path = Path("Data/Bank Customer Churn Prediction.csv")
 df = pd.read_csv(data_path)
 
@@ -36,12 +35,19 @@ print("\nData types:\n", df.dtypes)
 print("\nChurn distribution:")
 print(df["churn"].value_counts())
 
-# Correlation (Only NUMERIC)
+# -------------------------------------------------------
+# Correlation (NUMERIC ONLY BUT REMOVE customer_id)
+# -------------------------------------------------------
 
-num_cols = df.select_dtypes(include=['int64', 'float64']).columns
+num_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
+
+# Remove customer_id because it does not represent a numeric feature
+if "customer_id" in num_cols:
+    num_cols.remove("customer_id")
+
 corr = df[num_cols].corr()
 
 plt.figure(figsize=(10, 6))
 sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
-plt.title("Correlation Heatmap")
+plt.title("Correlation Heatmap (customer_id removed)")
 plt.show()
