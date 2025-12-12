@@ -8,3 +8,10 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# LOAD CLEANED DATA
+
+df = pd.read_csv("Data/clean_churn.csv")
+
+print("✓ Cleaned dataset loaded")
+print(df.head())
