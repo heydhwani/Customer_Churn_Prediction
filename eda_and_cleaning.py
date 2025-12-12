@@ -51,3 +51,21 @@ plt.figure(figsize=(10, 6))
 sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
 plt.title("Correlation Heatmap (customer_id removed)")
 plt.show()
+
+# HISTOGRAMS FOR NUMERICAL COLUMNS
+
+
+num_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
+
+# Remove customer_id (we don't want to visualize ID values)
+if "customer_id" in num_cols:
+    num_cols.remove("customer_id")
+
+print("\nPlotting Histograms for Numeric Features...")
+
+df[num_cols].hist(figsize=(12, 8), bins=20, edgecolor='black')
+plt.tight_layout()
+plt.show()
+
+print("\n✓ Histograms displayed successfully!")
+
