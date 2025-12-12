@@ -3,6 +3,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+
+plots_dir = Path("plots")
+plots_dir.mkdir(exist_ok=True)
+
 # LOAD DATA
 data_path = Path("Data/Bank Customer Churn Prediction.csv")
 df = pd.read_csv(data_path)
@@ -35,9 +39,8 @@ print("\nData types:\n", df.dtypes)
 print("\nChurn distribution:")
 print(df["churn"].value_counts())
 
-# -------------------------------------------------------
 # Correlation (NUMERIC ONLY BUT REMOVE customer_id)
-# -------------------------------------------------------
+
 
 num_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
 
@@ -50,6 +53,8 @@ corr = df[num_cols].corr()
 plt.figure(figsize=(10, 6))
 sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
 plt.title("Correlation Heatmap (customer_id removed)")
+plt.savefig(plots_dir/ "correlation_heatmap.png", dpi=300, bbox_inches="tight")
+
 plt.show()
 
 # HISTOGRAMS FOR NUMERICAL COLUMNS
@@ -65,6 +70,9 @@ print("\nPlotting Histograms for Numeric Features...")
 
 df[num_cols].hist(figsize=(12, 8), bins=20, edgecolor='black')
 plt.tight_layout()
+
+plt.savefig(plots_dir/"numeric_histograms.png", dpi=300, bbox_inches="tight")
+
 plt.show()
 
 print("\n✓ Histograms displayed successfully!")
