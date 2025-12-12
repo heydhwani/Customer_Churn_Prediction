@@ -1,3 +1,4 @@
+
 import pandas as pd
 from pathlib import Path
 import joblib
@@ -6,8 +7,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+from xgboost import XGBClassifier
+
 
 # LOAD CLEANED DATA
 
@@ -21,22 +24,16 @@ print(df.head())
 X = df.drop("churn", axis=1)
 y = df["churn"]
 
-# IDENTIFY COLUMN TYPES
-
-# Categorical columns
 categorical_cols = ["country", "gender"]
 
-# Numeric columns 
 numeric_cols = [
     "credit_score", "age", "tenure", "balance",
     "products_number", "credit_card", "active_member",
     "estimated_salary"
 ]
 
-print("\nCategorical Columns:", categorical_cols)
-print("Numeric Columns:", numeric_cols)
 
-# PREPROCESSING PIPELINE
+# PREPROCESSING
 
 preprocessor = ColumnTransformer(
     transformers=[
@@ -45,10 +42,16 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# MODEL
 
-model = RandomForestClassifier(
-    n_estimators=200,
+# XGBOOST MODEL (High Accuracy)
+
+model = XGBClassifier(
+    n_estimators=300,
+    learning_rate=0.05,
+    max_depth=6,
+    subsample=0.9,
+    colsample_bytree=0.9,
+    eval_metric="logloss",
     random_state=42
 )
 
@@ -57,20 +60,19 @@ pipeline = Pipeline([
     ("model", model)
 ])
 
-# TRAIN-TEST SPLIT
 
+# TRAIN-TEST SPLIT
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-print("\nTrain shape:", X_train.shape)
-print("Test shape:", X_test.shape)
 
 # TRAIN MODEL
 
-print("\nTraining model...")
+print("\nTraining XGBoost model...")
 pipeline.fit(X_train, y_train)
-print("✓ Model training complete!")
+print("✓ Training complete!")
+
 
 # EVALUATION
 
@@ -79,3 +81,11 @@ y_pred = pipeline.predict(X_test)
 print("\nAccuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
 print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+
+# SAVE MODEL
+
+Path("models").mkdir(exist_ok=True)
+joblib.dump(pipeline, "models/churn.joblib")
+
+print("\n✓ High-accuracy model saved at models/churn.joblib")
