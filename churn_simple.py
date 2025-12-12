@@ -13,3 +13,7 @@ df = pd.read_csv("Data/Bank Customer Churn Prediction.csv")
 print("Rows, cols:", df.shape)
 # Quick look
 print(df.head().T)
+
+#Basic cleaning
+if 'customerID' in df.columns:
+    df = df.drop(columns=['customerID'])
