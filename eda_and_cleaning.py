@@ -22,3 +22,8 @@ df = df.fillna(method='ffill')
 print("\nAfter basic cleaning:")
 print(df.head())
 
+# SAVE CLEANED DATA
+clean_path = Path("Data/clean_churn.csv")
+df.to_csv(clean_path, index=False)
+
+print("\n✓ Cleaned dataset saved at Data/clean_churn.csv")
