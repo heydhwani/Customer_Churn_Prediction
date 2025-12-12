@@ -18,7 +18,7 @@ print("Loaded data shape:", df.shape)
 print(df.head())
 
 
-# Prepare features & target 
+# Prepare features & target
 
 X = df.drop(columns=["churn", "customer_id"], errors="ignore")
 y = df["churn"]
@@ -34,7 +34,7 @@ print("Categorical cols:", categorical_cols)
 print("Numeric cols:", numeric_cols)
 
 
-# Preprocessor 
+# Preprocessor
 
 
 preprocessor = ColumnTransformer(
@@ -46,7 +46,7 @@ preprocessor = ColumnTransformer(
 )
 
 
-# Build full pipeline 
+# Build full pipeline
 
 model = GradientBoostingClassifier(
     n_estimators=300,
