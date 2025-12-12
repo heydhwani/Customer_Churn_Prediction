@@ -18,3 +18,8 @@ df = df.drop_duplicates()
 
 # Handle missing values
 df = df.fillna(method='ffill')
+
+# Drop columns that do not help in prediction
+cols_to_drop = ["RowNumber", "CustomerId", "Surname"]
+df = df.drop(columns=[c for c in cols_to_drop if c in df.columns], errors='ignore')
+
