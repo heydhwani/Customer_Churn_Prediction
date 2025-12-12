@@ -20,3 +20,18 @@ print(df.head())
 
 X = df.drop("churn", axis=1)
 y = df["churn"]
+
+# IDENTIFY COLUMN TYPES
+
+# Categorical columns
+categorical_cols = ["country", "gender"]
+
+# Numeric columns 
+numeric_cols = [
+    "credit_score", "age", "tenure", "balance",
+    "products_number", "credit_card", "active_member",
+    "estimated_salary"
+]
+
+print("\nCategorical Columns:", categorical_cols)
+print("Numeric Columns:", numeric_cols)
