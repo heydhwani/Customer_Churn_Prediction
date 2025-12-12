@@ -14,7 +14,7 @@ df = pd.read_csv(data_path)
 print("\n✓ Raw dataset loaded")
 print(df.head())
 
-# BASIC CLEANING
+
 
 # Remove duplicate rows
 df = df.drop_duplicates()
@@ -39,7 +39,7 @@ print("\nData types:\n", df.dtypes)
 print("\nChurn distribution:")
 print(df["churn"].value_counts())
 
-# Correlation (NUMERIC ONLY BUT REMOVE customer_id)
+# Correlation 
 
 
 num_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
@@ -62,7 +62,7 @@ plt.show()
 
 num_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
 
-# Remove customer_id (we don't want to visualize ID values)
+# Remove customer_id
 if "customer_id" in num_cols:
     num_cols.remove("customer_id")
 
