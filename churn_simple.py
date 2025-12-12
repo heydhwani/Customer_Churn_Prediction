@@ -15,3 +15,8 @@ df = pd.read_csv("Data/clean_churn.csv")
 
 print("✓ Cleaned dataset loaded")
 print(df.head())
+
+# FEATURES AND TARGET
+
+X = df.drop("churn", axis=1)
+y = df["churn"]
