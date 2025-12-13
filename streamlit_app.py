@@ -95,8 +95,7 @@ if submitted:
 
             st.write("**Remark:**", result["remark"])
 
-            st.divider()
-            st.json(result)
+            
 
         else:
             st.error(f"API error (status {response.status_code})")
