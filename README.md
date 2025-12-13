@@ -1,6 +1,6 @@
 # 📚  Customer Churn Prediction
 
-A machine-learning-powered web API using FastAPI to predict whether a bank customer is likely to churn (leave the bank) based on demographic and account-related features. This project is built on the popular **Bank Customer Churn Dataset.** from Kaggle.
+A machine-learning-powered web API using FastAPI to predict whether a bank customer is likely to churn (leave the bank) based on demographic and account-related features. This project is built on the popular **Bank Customer Churn Dataset** from Kaggle.
 
 ---
 
