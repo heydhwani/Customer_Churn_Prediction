@@ -191,14 +191,15 @@ pip install streamlit requests
 ### 2️⃣ Run the app
 ```bash
 streamlit run streamlit_app.py
----
+```
 
 ---
 
-## 📘 Dataset Info
+## DATASET LINK:
+https://www.kaggle.com/datasets/marslinoedward/bank-customer-churn-prediction
 
-- Source: Kaggle
-- [Data/Bank Customer Churn Prediction.csv](Data/Bank Customer Churn Prediction.csv)
 
 ---
+
+
 
