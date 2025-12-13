@@ -82,7 +82,7 @@ if submitted:
     st.info("Sending request to API...")
 
     try:
-        response = requests.post(API_URL, json=payload, timeout=10)
+        response = requests.post(API_URL, json=payload, timeout=120)
     except requests.exceptions.RequestException as e:
         st.error(f"Network error: {e}")
     else:
