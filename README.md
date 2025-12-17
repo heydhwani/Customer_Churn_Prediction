@@ -30,6 +30,7 @@ A machine-learning-powered web API using FastAPI to predict whether a bank custo
 ```
 Customer_Churn_Prediction/
 ├── app.py                           # FastAPI backend logic
+├
 ├── churn_simple.py                  # Model training script (Gradient Boosting)
 ├── eda_and_cleaning.py              # Exploratory Data Analysis + cleaning
 ├── streamlit_app.py                 # Streamlit frontend for churn prediction
